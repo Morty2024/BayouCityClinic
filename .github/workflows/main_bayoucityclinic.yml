@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - BayouCityClinic
+name: Build and deploy Node.js app to Azure Web App - Test-Azure-Web
 
 on:
   push:
@@ -60,15 +60,15 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_1FA7636DE36F4B8DB478F4A6639C4E03 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_53D96E62565B438191AEE7E68CBF5526 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_1A4F0F8859F1471297372D9C352874FD }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_B61226F2340749739862039DEBCAAC6B }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_4A3248E4B30D48E5AB3A5BB79EB01166 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_C316C6078C674DDEA8DA6DD439999A99 }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'BayouCityClinic'
+          app-name: 'Test-Azure-Web'
           slot-name: 'Production'
           package: .
           

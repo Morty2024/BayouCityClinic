@@ -387,13 +387,13 @@ const Appointments: React.FC = () => {
                 </div>
 
                 {/* Submit Button */}
-                <div className="md:col-span-2 mt-6 mb-10">
+                <div className="md:col-span-2 mt-6 mb-6 flex justify-center">
                   <button 
                     type="submit" 
-                    className="w-full bg-dark-green hover:bg-green-700 text-white font-bold py-5 px-10 rounded-lg shadow-lg transition duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed text-xl"
+                    className="px-8 py-3 bg-dark-green hover:bg-green-600 text-white font-medium rounded-md shadow-md transition duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? 'Submitting Request...' : 'SUBMIT APPOINTMENT REQUEST'}
+                    {isSubmitting ? 'Processing...' : 'Submit Request'}
                   </button>
                 </div>
 

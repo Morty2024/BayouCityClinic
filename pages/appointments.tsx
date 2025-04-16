@@ -385,25 +385,25 @@ const Appointments: React.FC = () => {
                     placeholder="Please provide any additional information about your visit..."
                   ></textarea>
                 </div>
-                
-                <div className="md:col-span-2 mt-4">
+
+                {/* Submit Button */}
+                <div className="md:col-span-2 mt-6">
                   <button 
                     type="submit" 
-                    className="w-full bg-dark-green hover:bg-dark-blue text-white font-bold py-3 px-4 rounded-md transition-colors duration-300 disabled:bg-gray-400"
+                    className="w-full md:w-auto bg-dark-green hover:bg-green-700 text-white font-bold py-3 px-8 rounded-md transition duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? 'Submitting...' : 'Request Appointment'}
+                    {isSubmitting ? 'Submitting Request...' : 'Request Appointment'}
                   </button>
                 </div>
-                
-                <div className="md:col-span-2 text-sm text-gray-600">
-                  <p>Fields marked with <span className="text-red-500">*</span> are required.</p>
-                  <p className="mt-2">
-                    Note: This form is a request only. We will contact you to confirm your appointment. 
-                    For urgent matters, please call us at <a href="tel:+17135550194" className="text-dark-green font-semibold">(713) 555-0194</a>.
-                  </p>
-                </div>
+
               </div>
+
+              <div className="mt-8 text-sm text-gray-600">
+                <p>Fields marked with <span className="text-red-500">*</span> are required.</p>
+                <p>Note: This form is a request only. We will contact you to confirm your appointment. For urgent matters, please call us at <a href="tel:+17135550194" className="text-dark-green font-semibold">(713) 555-0194</a>.</p>
+              </div>
+
             </form>
           </div>
         )}

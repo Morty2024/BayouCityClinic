@@ -390,7 +390,7 @@ const Appointments: React.FC = () => {
                 <div className="md:col-span-2 mt-6 mb-6 flex justify-center">
                   <button 
                     type="submit" 
-                    className="px-8 py-3 bg-dark-green hover:bg-green-600 text-white font-medium rounded-md shadow-md transition duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="bg-[#3f775e] text-white px-6 py-3 rounded-full hover:bg-[#4c8f73] transition-colors duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? 'Processing...' : 'Submit Request'}

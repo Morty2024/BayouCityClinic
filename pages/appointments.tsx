@@ -171,7 +171,7 @@ const Appointments: React.FC = () => {
           </div>
         ) : (
           <div className="max-w-3xl mx-auto">
-            <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-lg p-8">
+            <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-lg p-8 mb-16">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Personal Information */}
                 <div className="md:col-span-2">
@@ -387,13 +387,13 @@ const Appointments: React.FC = () => {
                 </div>
 
                 {/* Submit Button */}
-                <div className="md:col-span-2 mt-6">
+                <div className="md:col-span-2 mt-6 mb-10">
                   <button 
                     type="submit" 
-                    className="w-full md:w-auto bg-dark-green hover:bg-green-700 text-white font-bold py-3 px-8 rounded-md transition duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-dark-green hover:bg-green-700 text-white font-bold py-5 px-10 rounded-lg shadow-lg transition duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed text-xl"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? 'Submitting Request...' : 'Request Appointment'}
+                    {isSubmitting ? 'Submitting Request...' : 'SUBMIT APPOINTMENT REQUEST'}
                   </button>
                 </div>
 

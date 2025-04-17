@@ -15,6 +15,10 @@ interface FormData {
   confirmPassword: string;
 }
 
+interface ErrorWithMessage extends Error {
+  message: string;
+}
+
 const Register: React.FC = () => {
   const { register } = useAuth();
   const [formData, setFormData] = useState<FormData>({
@@ -54,11 +58,13 @@ const Register: React.FC = () => {
 
     try {
       // Remove confirmPassword from the data sent to the API
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { confirmPassword, ...userData } = formData;
       await register(userData);
       // register function handles the redirect
-    } catch (err: any) {
-      setError(err.message || 'Registration failed. Please try again.');
+    } catch (err: unknown) {
+      const error = err as ErrorWithMessage;
+      setError(error.message || 'Registration failed. Please try again.');
     } finally {
       setIsLoading(false);
     }

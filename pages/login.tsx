@@ -6,6 +6,10 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { useAuth } from '../contexts/AuthContext';
 
+interface ErrorWithMessage extends Error {
+  message: string;
+}
+
 const Login: React.FC = () => {
   const router = useRouter();
   const { login } = useAuth();
@@ -30,8 +34,9 @@ const Login: React.FC = () => {
     try {
       await login(email, password);
       // No need to redirect as the login function handles this
-    } catch (err: any) {
-      setError(err.message || 'Failed to login. Please check your credentials.');
+    } catch (err: unknown) {
+      const error = err as ErrorWithMessage;
+      setError(error.message || 'Failed to login. Please check your credentials.');
     } finally {
       setIsLoading(false);
     }
@@ -99,7 +104,7 @@ const Login: React.FC = () => {
             
             <div className="mt-6 text-center">
               <p className="text-gray-600">
-                Don't have an account?{' '}
+                Don&apos;t have an account?{' '}
                 <Link href="/register" className="text-dark-green hover:underline">
                   Register here
                 </Link>

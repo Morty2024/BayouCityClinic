@@ -65,7 +65,8 @@ const Profile: React.FC = () => {
       
       setMessage({ text: 'Profile updated successfully!', type: 'success' });
       setIsEditing(false);
-    } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (err) {
       setMessage({ text: 'Failed to update profile. Please try again.', type: 'error' });
     } finally {
       setIsLoading(false);

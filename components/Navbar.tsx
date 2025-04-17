@@ -74,77 +74,91 @@ const Navbar: React.FC = () => {
           </a>
         </div>
         
-        {/* Mobile menu button */}
+        {/* Mobile menu button with animation */}
         <div className="md:hidden">
           <button 
             onClick={toggleMobileMenu}
-            className="text-dark-blue dark:text-gray-200 transition-colors duration-300 hover:text-green-600"
+            className="relative z-50 flex items-center justify-center w-10 h-10 text-dark-blue dark:text-gray-200 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
-            {mobileMenuOpen ? (
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
+            <div className="flex flex-col justify-center items-center">
+              {/* Animated hamburger icon */}
+              <span 
+                className={`block h-0.5 w-6 bg-current transition-transform duration-300 ease-in-out ${mobileMenuOpen ? 'rotate-45 translate-y-1' : ''}`}
+              ></span>
+              <span 
+                className={`block h-0.5 w-6 bg-current transition-all duration-300 ease-in-out mt-1 ${mobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}
+              ></span>
+              <span 
+                className={`block h-0.5 w-6 bg-current transition-transform duration-300 ease-in-out mt-1 ${mobileMenuOpen ? '-rotate-45 -translate-y-1' : ''}`}
+              ></span>
+            </div>
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
-      {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-beige dark:bg-gray-800 shadow-lg z-50 py-6 px-4">
-          <div className="flex flex-col space-y-4">
-            <Link 
-              href="/" 
-              className={`${isActive('/') ? 'text-dark-green font-semibold' : 'text-dark-blue dark:text-gray-200'} hover:text-green-600 transition-colors duration-300 text-lg py-2 border-b border-gray-200 dark:border-gray-700`}
-              onClick={toggleMobileMenu}
-            >
-              Home
-            </Link>
-            <Link 
-              href="/services" 
-              className={`${isActive('/services') ? 'text-dark-green font-semibold' : 'text-dark-blue dark:text-gray-200'} hover:text-green-600 transition-colors duration-300 text-lg py-2 border-b border-gray-200 dark:border-gray-700`}
-              onClick={toggleMobileMenu}
-            >
-              Services
-            </Link>
-            <Link 
-              href="/about" 
-              className={`${isActive('/about') ? 'text-dark-green font-semibold' : 'text-dark-blue dark:text-gray-200'} hover:text-green-600 transition-colors duration-300 text-lg py-2 border-b border-gray-200 dark:border-gray-700`}
-              onClick={toggleMobileMenu}
-            >
-              About Us
-            </Link>
-            <Link 
-              href="/appointments" 
-              className={`${isActive('/appointments') ? 'text-dark-green font-semibold' : 'text-dark-blue dark:text-gray-200'} hover:text-green-600 transition-colors duration-300 text-lg py-2 border-b border-gray-200 dark:border-gray-700`}
-              onClick={toggleMobileMenu}
-            >
-              Appointments
-            </Link>
-            <Link 
-              href="/contact" 
-              className={`${isActive('/contact') ? 'text-dark-green font-semibold' : 'text-dark-blue dark:text-gray-200'} hover:text-green-600 transition-colors duration-300 text-lg py-2 border-b border-gray-200 dark:border-gray-700`}
-              onClick={toggleMobileMenu}
-            >
-              Contact
-            </Link>
-            
-            {/* Mobile Phone Button */}
-            <a 
-              href="tel:+17135550194" 
-              className="bg-[#3f775e] text-white px-4 py-3 rounded-full hover:bg-[#4c8f73] transition-colors duration-300 text-center mt-2"
-              onClick={toggleMobileMenu}
-            >
-              (713) 555-0194
-            </a>
+      {/* Mobile Menu Overlay with improved styling */}
+      <div 
+        className={`md:hidden fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+        onClick={toggleMobileMenu}
+      ></div>
+      
+      <div 
+        className={`md:hidden fixed top-0 right-0 bottom-0 w-4/5 max-w-xs z-40 bg-white dark:bg-gray-800 shadow-xl transform transition-transform duration-300 ease-in-out ${
+          mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        <div className="flex flex-col h-full pt-20 pb-6 px-6 overflow-y-auto">
+          <Link 
+            href="/" 
+            className={`${isActive('/') ? 'text-dark-green font-semibold' : 'text-dark-blue dark:text-gray-200'} hover:text-green-600 transition-colors duration-300 text-lg py-4 border-b border-gray-200 dark:border-gray-700`}
+            onClick={toggleMobileMenu}
+          >
+            Home
+          </Link>
+          <Link 
+            href="/services" 
+            className={`${isActive('/services') ? 'text-dark-green font-semibold' : 'text-dark-blue dark:text-gray-200'} hover:text-green-600 transition-colors duration-300 text-lg py-4 border-b border-gray-200 dark:border-gray-700`}
+            onClick={toggleMobileMenu}
+          >
+            Services
+          </Link>
+          <Link 
+            href="/about" 
+            className={`${isActive('/about') ? 'text-dark-green font-semibold' : 'text-dark-blue dark:text-gray-200'} hover:text-green-600 transition-colors duration-300 text-lg py-4 border-b border-gray-200 dark:border-gray-700`}
+            onClick={toggleMobileMenu}
+          >
+            About Us
+          </Link>
+          <Link 
+            href="/appointments" 
+            className={`${isActive('/appointments') ? 'text-dark-green font-semibold' : 'text-dark-blue dark:text-gray-200'} hover:text-green-600 transition-colors duration-300 text-lg py-4 border-b border-gray-200 dark:border-gray-700`}
+            onClick={toggleMobileMenu}
+          >
+            Appointments
+          </Link>
+          <Link 
+            href="/contact" 
+            className={`${isActive('/contact') ? 'text-dark-green font-semibold' : 'text-dark-blue dark:text-gray-200'} hover:text-green-600 transition-colors duration-300 text-lg py-4 border-b border-gray-200 dark:border-gray-700`}
+            onClick={toggleMobileMenu}
+          >
+            Contact
+          </Link>
+          
+          {/* Mobile Phone Button */}
+          <a 
+            href="tel:+17135550194" 
+            className="bg-[#3f775e] text-white px-4 py-3 rounded-full hover:bg-[#4c8f73] transition-colors duration-300 text-center mt-6"
+            onClick={toggleMobileMenu}
+          >
+            (713) 555-0194
+          </a>
+          
+          <div className="mt-auto pt-6 flex justify-center">
+            <ThemeToggle />
           </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 };

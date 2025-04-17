@@ -3,10 +3,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import ThemeToggle from './ThemeToggle';
+import { useAuth } from '../contexts/AuthContext';
 
 const Navbar: React.FC = () => {
   const router = useRouter();
+  const { user, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   
   const isActive = (path: string) => {
     return router.pathname === path;
@@ -14,6 +17,18 @@ const Navbar: React.FC = () => {
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const toggleUserMenu = () => {
+    setUserMenuOpen(!userMenuOpen);
+  };
+
+  const handleLogout = () => {
+    logout();
+    setUserMenuOpen(false);
+    if (mobileMenuOpen) {
+      setMobileMenuOpen(false);
+    }
   };
 
   return (
@@ -60,6 +75,57 @@ const Navbar: React.FC = () => {
             Contact
             <span className={`absolute bottom-0 left-0 h-0.5 bg-green-600 transition-all duration-300 ${isActive('/contact') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
           </Link>
+        </div>
+        
+        {/* User Menu - Desktop */}
+        <div className="hidden md:block relative">
+          {user ? (
+            <>
+              <button 
+                onClick={toggleUserMenu}
+                className="flex items-center space-x-1 text-dark-blue dark:text-gray-200 hover:text-green-600 transition-colors duration-300"
+                aria-label="User menu"
+                aria-expanded={userMenuOpen}
+              >
+                <span className="font-medium">{user.firstName}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 transition-transform duration-300 ${userMenuOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              
+              {userMenuOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50">
+                  <Link 
+                    href="/dashboard" 
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    onClick={() => setUserMenuOpen(false)}
+                  >
+                    Dashboard
+                  </Link>
+                  <Link 
+                    href="/profile" 
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    onClick={() => setUserMenuOpen(false)}
+                  >
+                    Profile
+                  </Link>
+                  <button 
+                    onClick={handleLogout}
+                    className="block w-full text-left px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </>
+          ) : (
+            <Link 
+              href="/login" 
+              className="text-dark-blue dark:text-gray-200 hover:text-green-600 transition-colors duration-300 font-medium"
+            >
+              Log In
+            </Link>
+          )}
         </div>
         
         {/* Theme Toggle Button */}
@@ -144,6 +210,43 @@ const Navbar: React.FC = () => {
           >
             Contact
           </Link>
+          
+          {/* User Account Links - Mobile */}
+          {user ? (
+            <>
+              <div className="py-4 border-b border-gray-200 dark:border-gray-700 text-dark-blue dark:text-gray-200 font-medium">
+                Hello, {user.firstName}
+              </div>
+              <Link 
+                href="/dashboard" 
+                className="text-dark-blue dark:text-gray-200 hover:text-green-600 transition-colors duration-300 text-lg py-4 border-b border-gray-200 dark:border-gray-700"
+                onClick={toggleMobileMenu}
+              >
+                Dashboard
+              </Link>
+              <Link 
+                href="/profile" 
+                className="text-dark-blue dark:text-gray-200 hover:text-green-600 transition-colors duration-300 text-lg py-4 border-b border-gray-200 dark:border-gray-700"
+                onClick={toggleMobileMenu}
+              >
+                Profile
+              </Link>
+              <button 
+                onClick={handleLogout}
+                className="text-dark-blue dark:text-gray-200 hover:text-green-600 transition-colors duration-300 text-lg py-4 border-b border-gray-200 dark:border-gray-700 text-left w-full"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link 
+              href="/login" 
+              className="text-dark-blue dark:text-gray-200 hover:text-green-600 transition-colors duration-300 text-lg py-4 border-b border-gray-200 dark:border-gray-700"
+              onClick={toggleMobileMenu}
+            >
+              Log In
+            </Link>
+          )}
           
           {/* Mobile Phone Button */}
           <a 

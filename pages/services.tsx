@@ -63,21 +63,25 @@ const Services: React.FC = () => {
             title="Primary Care" 
             description="Personalized primary care for all ages." 
             icon={primaryCareIcon} 
+            href="/services/primary-care"
           />
           <ServiceCard 
             title="Pediatric Care" 
             description="Expert medical care for infants, children, and adolescents." 
             icon={pediatricCareIcon} 
+            href="/services/pediatric-care"
           />
           <ServiceCard 
             title="Women's Health" 
             description="Comprehensive women's health services for all stages of life." 
             icon={womensHealthIcon} 
+            href="/services/womens-health"
           />
           <ServiceCard 
             title="Preventive Services" 
             description="Screenings and preventive care to keep you healthy." 
             icon={preventiveServicesIcon} 
+            href="/services/preventive-services"
           />
         </div>
 

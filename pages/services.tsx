@@ -6,10 +6,10 @@ import Footer from '../components/Footer';
 import ServiceCard from '../components/ServiceCard';
 
 const Services: React.FC = () => {
-  // Using actual service icons from the Icons folder
+  // Using PNG service icons from the Icons folder
   const primaryCareIcon = (
     <Image 
-      src="/Icons/Bayou City Clinic - Primary Care Icon.svg" 
+      src="/Icons/Bayou City Clinic - Primary Care Icon.png" 
       alt="Primary Care Icon" 
       width={80} 
       height={80} 
@@ -18,7 +18,7 @@ const Services: React.FC = () => {
 
   const pediatricCareIcon = (
     <Image 
-      src="/Icons/Bayou City Clinic-Pediatric Care Icon.svg" 
+      src="/Icons/Bayou City Clinic - Pediatric Care.png" 
       alt="Pediatric Care Icon" 
       width={80} 
       height={80} 
@@ -27,7 +27,7 @@ const Services: React.FC = () => {
 
   const womensHealthIcon = (
     <Image 
-      src="/Icons/Bayou City Clinic - Women Health Icon.svg" 
+      src="/Icons/Bayou City Clinic - Women Health.png" 
       alt="Women's Health Icon" 
       width={80} 
       height={80} 
@@ -36,7 +36,7 @@ const Services: React.FC = () => {
 
   const preventiveServicesIcon = (
     <Image 
-      src="/Icons/Bayou City Clinic - Preventive Services Icon.svg" 
+      src="/Icons/Bayou City Clinic - Preventive Services.png" 
       alt="Preventive Services Icon" 
       width={80} 
       height={80} 

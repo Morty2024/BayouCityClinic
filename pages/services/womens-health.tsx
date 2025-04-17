@@ -9,7 +9,7 @@ const WomensHealth: React.FC = () => {
   return (
     <div className="min-h-screen bg-beige dark:bg-gray-900">
       <Head>
-        <title>Women's Health | Bayou City Clinic</title>
+        <title>Women&apos;s Health | Bayou City Clinic</title>
         <meta name="description" content="Comprehensive women's health services at Bayou City Clinic" />
       </Head>
 
@@ -17,10 +17,10 @@ const WomensHealth: React.FC = () => {
 
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-md p-8 md:p-12">
-          <h1 className="text-4xl font-bold text-dark-blue dark:text-white mb-6">Women's Health</h1>
+          <h1 className="text-4xl font-bold text-dark-blue dark:text-white mb-6">Women&apos;s Health</h1>
           
           <p className="text-lg text-gray-800 dark:text-gray-200 mb-8">
-            We provide comprehensive women's health services tailored to address the unique health 
+            We provide comprehensive women&apos;s health services tailored to address the unique health 
             needs of women at every stage of life. Our compassionate team is dedicated to providing 
             preventive care, diagnosis, and treatment with sensitivity and understanding.
           </p>

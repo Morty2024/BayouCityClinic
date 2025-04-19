@@ -56,7 +56,7 @@ export default function Home() {
   );
 
   return (
-    <div className="min-h-screen bg-beige">
+    <div className="min-h-screen bg-beige dark:bg-gray-900">
       <Head>
         <title>Bayou City Clinic - Your Health, Our Priority</title>
         <meta name="description" content="Comprehensive, compassionate healthcare for you and your family at Bayou City Clinic in Houston, TX." />
@@ -98,9 +98,9 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="py-16 px-4 bg-white">
+      <section className="py-16 px-4 bg-white dark:bg-gray-800">
         <div className="container mx-auto">
-          <h2 className="text-4xl font-bold text-dark-blue mb-12 animate-on-load">Our Services</h2>
+          <h2 className="text-4xl font-bold text-dark-blue dark:text-white mb-12 animate-on-load">Our Services</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <ServiceCard 
               title="Primary Care" 
@@ -132,7 +132,7 @@ export default function Home() {
 
       {/* About Section Preview */}
       <section className="py-16 px-4">
-        <div className="container mx-auto bg-white rounded-lg shadow-lg p-8 transform transition-transform duration-500 hover:shadow-2xl">
+        <div className="container mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 transform transition-transform duration-500 hover:shadow-2xl">
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-8 md:mb-0 md:pr-8">
               <div className="flex items-center mb-4 animate-on-load">
@@ -143,17 +143,17 @@ export default function Home() {
                   height={40}
                   className="mr-3"
                 />
-                <h2 className="text-3xl font-bold text-dark-blue">About Our Clinic</h2>
+                <h2 className="text-3xl font-bold text-dark-blue dark:text-white">About Our Clinic</h2>
               </div>
-              <p className="text-gray-700 mb-4 animate-on-load">
+              <p className="text-gray-700 dark:text-gray-300 mb-4 animate-on-load">
                 Founded with the mission to provide comprehensive, patient-centered healthcare, 
                 Bayou City Clinic has been serving the Houston community with dedication and excellence.
               </p>
-              <p className="text-gray-700 mb-6 animate-on-load">
+              <p className="text-gray-700 dark:text-gray-300 mb-6 animate-on-load">
                 Our team of experienced healthcare professionals is committed to your well-being, 
                 offering personalized care in a comfortable and welcoming environment.
               </p>
-              <Link href="/about" className="text-dark-green hover:text-dark-blue font-medium transition-all duration-300 inline-flex items-center group animate-on-load">
+              <Link href="/about" className="text-dark-green hover:text-dark-blue dark:text-green-400 dark:hover:text-green-300 font-medium transition-all duration-300 inline-flex items-center group animate-on-load">
                 Learn more about us 
                 <span className="ml-1 transform transition-transform duration-300 group-hover:translate-x-2">→</span>
               </Link>
@@ -182,10 +182,10 @@ export default function Home() {
             Contact us today to schedule an appointment.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="tel:+17135550194" className="bg-white text-dark-blue px-8 py-3 rounded-full text-lg font-medium hover:bg-green-100 transition-all duration-300 transform hover:scale-105 hover:shadow-lg animate-on-load">
+            <a href="tel:+17135550194" className="bg-[#3f775e] text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-[#4c8f73] transition-all duration-300 transform hover:scale-105 hover:shadow-lg animate-on-load">
               Call (713) 555-0194
             </a>
-            <Link href="/appointments" className="bg-dark-green text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-green-600 transition-all duration-300 transform hover:scale-105 hover:shadow-lg animate-on-load">
+            <Link href="/appointments" className="bg-[#3f775e] text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-[#4c8f73] transition-all duration-300 transform hover:scale-105 hover:shadow-lg animate-on-load">
               Book Appointment
             </Link>
           </div>

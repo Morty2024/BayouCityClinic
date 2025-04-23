@@ -153,7 +153,7 @@ export default function Home() {
                 Our team of experienced healthcare professionals is committed to your well-being, 
                 offering personalized care in a comfortable and welcoming environment.
               </p>
-              <Link href="/about" className="text-dark-green hover:text-dark-blue dark:text-green-400 dark:hover:text-green-300 font-medium transition-all duration-300 inline-flex items-center group animate-on-load">
+              <Link href="/about" className="text-[#3f775e] hover:text-[#4c8f73] font-medium transition-all duration-300 inline-flex items-center group animate-on-load">
                 Learn more about us 
                 <span className="ml-1 transform transition-transform duration-300 group-hover:translate-x-2">→</span>
               </Link>

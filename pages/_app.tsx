@@ -4,17 +4,20 @@ import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 import PageTransition from "../components/PageTransition";
 import { AuthProvider } from "../contexts/AuthContext";
+import { ThemeProvider } from 'next-themes';
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   
   return (
-    <AuthProvider>
-      <AnimatePresence mode="wait">
-        <PageTransition key={router.route}>
-          <Component {...pageProps} />
-        </PageTransition>
-      </AnimatePresence>
-    </AuthProvider>
+    <ThemeProvider attribute="class">
+      <AuthProvider>
+        <AnimatePresence mode="wait">
+          <PageTransition key={router.route}>
+            <Component {...pageProps} />
+          </PageTransition>
+        </AnimatePresence>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }

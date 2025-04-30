@@ -1,71 +1,65 @@
-import { SessionProvider } from "next-auth/react";
-import "../styles/globals.css";
-import type { AppProps } from "next/app";
-import { AnimatePresence } from "framer-motion";
-import { useRouter } from "next/router";
-import PageTransition from "../components/PageTransition";
-import { signIn, useSession } from "next-auth/react";
-import { useEffect } from "react";
-import Head from "next/head";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import type { NextApiRequest, NextApiResponse } from 'next';
+import bcrypt from 'bcryptjs';
 
-export default function App({ Component, pageProps }: AppProps) {
-  const router = useRouter();
-  const { data: session, status } = useSession();
-  
-  useEffect(() => {
-    if (status === "authenticated") {
-      router.push("/dashboard");
-    }
-  }, [status, router]);
-  
-  return (
-    <SessionProvider session={pageProps.session}>
-      <AnimatePresence mode="wait">
-        <PageTransition key={router.route}>
-          <Component {...pageProps} />
-        </PageTransition>
-      </AnimatePresence>
-    </SessionProvider>
-  );
+interface User {
+  id: string;
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
 }
 
-export function Login() {
-  const { data: session, status } = useSession();
-  const router = useRouter();
-  
-  useEffect(() => {
-    if (status === "authenticated") {
-      router.push("/dashboard");
+// This would typically connect to a database in a real implementation
+const users: User[] = [
+  {
+    id: '1',
+    email: 'test@example.com',
+    // This is just an example - in production, never store passwords like this
+    password: '$2a$10$8Ux8xN6WZd4M8L7cT9C4EueGKowdkXJI2kpDqyB9qZ.BBnCDk8jXK', // hashed 'password123'
+    firstName: 'Test',
+    lastName: 'User'
+  }
+];
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: 'Method not allowed' });
+  }
+
+  try {
+    const { email, password } = req.body;
+
+    // Basic validation
+    if (!email || !password) {
+      return res.status(400).json({ message: 'Missing required fields' });
     }
-  }, [status, router]);
-  
-  return (
-    <div className="min-h-screen bg-beige">
-      <Head>
-        <title>Login | Bayou City Clinic</title>
-        <meta name="description" content="Login to your Bayou City Clinic patient account" />
-      </Head>
 
-      <Navbar />
+    // Find user
+    const user = users.find(user => user.email === email);
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
 
-      <main className="container mx-auto px-4 py-12">
-        <div className="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden">
-          <div className="px-6 py-8">
-            <h2 className="text-2xl font-bold text-dark-blue text-center mb-6">Login to Your Account</h2>
-            
-            <button
-              onClick={() => signIn("azure-ad-b2c")}
-              className="w-full bg-dark-green hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out"
-            >
-              Sign in with Azure B2C
-            </button>
-          </div>
-        </div>
-      </main>
+    // Check password
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
 
-      <Footer />
-    </div>
-  );
+    // In a real implementation, you would create a session or JWT token here
+    // For this example, we'll just return the user (minus the password)
+    const { id, email: userEmail, firstName, lastName } = user;
+    const userWithoutPassword = { id, email: userEmail, firstName, lastName };
+    
+    return res.status(200).json({ 
+      user: userWithoutPassword,
+      token: 'sample-jwt-token' // In a real app, generate a proper JWT
+    });
+  } catch (error) {
+    console.error('Login error:', error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
 }

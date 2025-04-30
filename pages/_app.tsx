@@ -13,9 +13,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <ThemeProvider attribute="class">
       <AuthProvider>
         <AnimatePresence mode="wait">
-          <PageTransition key={router.route}>
+          {/* <PageTransition key={router.route}> */}
             <Component {...pageProps} />
-          </PageTransition>
+          {/* </PageTransition> */}
         </AnimatePresence>
       </AuthProvider>
     </ThemeProvider>

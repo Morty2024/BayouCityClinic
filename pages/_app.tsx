@@ -7,8 +7,19 @@ import { AuthProvider as AppAuthProvider } from "../contexts/AuthContext";
 import { ThemeProvider } from 'next-themes';
 import { AuthProvider } from "react-oidc-context";
 import { useEffect, useState } from "react";
+import { Amplify } from 'aws-amplify';
+import { disableAnalytics } from "../config/analytics";
 
-// Cognito OIDC configuration - replace with your own values from AWS Cognito
+// Amplify configuration for Cognito
+const awsConfig = {
+  Auth: {
+    region: 'us-east-2',
+    userPoolId: 'us-east-2_Jsf23aKJN',
+    userPoolWebClientId: '5svs97v0pkoauc5a42vsoascrd'
+  }
+};
+
+// Cognito OIDC configuration
 const cognitoAuthConfig = {
   authority: "https://cognito-idp.us-east-2.amazonaws.com/us-east-2_Jsf23aKJN",
   client_id: "5svs97v0pkoauc5a42vsoascrd",
@@ -20,6 +31,12 @@ const cognitoAuthConfig = {
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const [isClient, setIsClient] = useState(false);
+  
+  // Configure Amplify and disable analytics
+  useEffect(() => {
+    Amplify.configure(awsConfig);
+    disableAnalytics();
+  }, []);
   
   // This is to prevent SSR issues with the AuthProvider
   useEffect(() => {

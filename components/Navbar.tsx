@@ -32,7 +32,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="flex justify-between items-center py-2 px-6 bg-beige dark:bg-gray-800 transition-colors duration-300 relative">
+    <nav className="flex justify-between items-center py-2 px-4 lg:px-6 bg-beige dark:bg-gray-800 transition-colors duration-300 relative">
       <div className="flex items-center">
         <Link href="/" aria-label="Bayou City Clinic - Home">
           <div className="flex items-center transition-transform duration-300 hover:scale-105">
@@ -52,9 +52,9 @@ const Navbar: React.FC = () => {
         </Link>
       </div>
       
-      <div className="flex items-center space-x-8">
+      <div className="flex items-center space-x-4 lg:space-x-8">
         {/* Desktop Navigation */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex space-x-6 lg:space-x-8">
           <Link href="/" className={`${isActive('/') ? 'text-dark-green font-semibold' : 'text-dark-blue dark:text-gray-200'} hover:text-green-600 transition-colors duration-300 relative group`}>
             Home
             <span className={`absolute bottom-0 left-0 h-0.5 bg-green-600 transition-all duration-300 ${isActive('/') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
@@ -133,9 +133,17 @@ const Navbar: React.FC = () => {
           <ThemeToggle />
         </div>
         
-        {/* Desktop Phone Button */}
-        <div className="hidden md:block">
+        {/* Phone Button - Different sizes for different breakpoints */}
+        {/* Large screens (lg and up) */}
+        <div className="hidden lg:block">
           <a href="tel:+17135550194" className="bg-[#3f775e] text-white px-4 py-2 rounded-full hover:bg-[#4c8f73] transition-colors duration-300 transform hover:scale-105">
+            (713) 555-0194
+          </a>
+        </div>
+        
+        {/* Medium screens only (md to lg) */}
+        <div className="hidden md:block lg:hidden">
+          <a href="tel:+17135550194" className="bg-[#3f775e] text-white px-3 py-1.5 rounded-full hover:bg-[#4c8f73] transition-colors duration-300 transform hover:scale-105 text-sm">
             (713) 555-0194
           </a>
         </div>
@@ -165,7 +173,7 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Menu Overlay with improved styling */}
       <div 
-        className={`md:hidden fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+        className={`md:hidden fixed inset-0 backdrop-blur-md bg-white/30 dark:bg-gray-900/30 z-40 transition-opacity duration-300 ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
         onClick={toggleMobileMenu}
       ></div>
       

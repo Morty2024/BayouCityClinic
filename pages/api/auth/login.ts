@@ -1,9 +1,25 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from 'next';
 import bcrypt from 'bcryptjs';
 
-// Importing the users array from register endpoint
-// In a real app, this would be a database query
-import { users, User } from './register';
+interface User {
+  id: string;
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+}
+
+// This would typically connect to a database in a real implementation
+const users: User[] = [
+  {
+    id: '1',
+    email: 'test@example.com',
+    // This is just an example - in production, never store passwords like this
+    password: '$2a$10$8Ux8xN6WZd4M8L7cT9C4EueGKowdkXJI2kpDqyB9qZ.BBnCDk8jXK', // hashed 'password123'
+    firstName: 'Test',
+    lastName: 'User'
+  }
+];
 
 export default async function handler(
   req: NextApiRequest,
@@ -18,34 +34,32 @@ export default async function handler(
 
     // Basic validation
     if (!email || !password) {
-      return res.status(400).json({ message: 'Email and password are required' });
+      return res.status(400).json({ message: 'Missing required fields' });
     }
 
-    // Find user by email
-    // In a real app, this would be a database query
-    const user = users.find((u: User) => u.email === email);
-    
-    // If user doesn't exist or password is incorrect
+    // Find user
+    const user = users.find(user => user.email === email);
     if (!user) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    // Verify password
+    // Check password
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    // Return user info without password
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password: passwordField, ...userWithoutPassword } = user;
+    // In a real implementation, you would create a session or JWT token here
+    // For this example, we'll just return the user (minus the password)
+    const { id, email: userEmail, firstName, lastName } = user;
+    const userWithoutPassword = { id, email: userEmail, firstName, lastName };
     
     return res.status(200).json({ 
-      message: 'Login successful', 
-      user: userWithoutPassword 
+      user: userWithoutPassword,
+      token: 'sample-jwt-token' // In a real app, generate a proper JWT
     });
   } catch (error) {
     console.error('Login error:', error);
     return res.status(500).json({ message: 'Internal server error' });
   }
-} 
+}

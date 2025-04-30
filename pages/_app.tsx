@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   
   return (
-    <ThemeProvider attribute="class">
+    <ThemeProvider attribute="class" disableSystem={true} defaultTheme="light">
       <AuthProvider>
         <AnimatePresence mode="wait">
           <PageTransition key={router.route}>

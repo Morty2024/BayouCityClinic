@@ -6,6 +6,8 @@ frontend:
         - npm ci
     build:
       commands:
+        - env | grep -e NEXT_PUBLIC_ >> .env.production
+        - env | grep -e AMPLIFY_ >> .env.production
         - npm run build
   artifacts:
     baseDirectory: .next
@@ -13,4 +15,17 @@ frontend:
       - '**/*'
   cache:
     paths:
-      - node_modules/**/* 
+      - node_modules/**/*
+  customHeaders:
+    - pattern: '**/*'
+      headers:
+        - key: 'Strict-Transport-Security'
+          value: 'max-age=31536000; includeSubDomains'
+        - key: 'X-Frame-Options'
+          value: 'SAMEORIGIN'
+        - key: 'X-XSS-Protection'
+          value: '1; mode=block'
+        - key: 'X-Content-Type-Options'
+          value: 'nosniff'
+  buildPath: /
+  appRoot: / 

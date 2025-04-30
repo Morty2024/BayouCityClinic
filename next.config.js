@@ -5,11 +5,10 @@ const nextConfig = {
   images: {
     domains: ['images.unsplash.com'],
   },
-  // Output in standalone mode for better compatibility with AWS Amplify
+  // Completely disable static generation
   output: 'standalone',
-  // Disable static exports for authentication pages
+  // Disable all static optimization for authentication-related issues
   experimental: {
-    // This ensures pages like login aren't statically generated
     workerThreads: false,
     cpus: 1
   }

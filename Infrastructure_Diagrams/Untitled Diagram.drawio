@@ -113,7 +113,7 @@
         <mxCell id="hEfQuzmt5uYXeB6LslyW-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="hEfQuzmt5uYXeB6LslyW-28" target="hEfQuzmt5uYXeB6LslyW-31">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="hEfQuzmt5uYXeB6LslyW-28" value="Bayou City Clinic&lt;div&gt;Employees&lt;/div&gt;" style="verticalLabelPosition=bottom;sketch=0;html=1;fillColor=#282828;strokeColor=none;verticalAlign=top;pointerEvents=1;align=center;shape=mxgraph.cisco_safe.people_places_things_icons.icon6;" vertex="1" parent="1">
+        <mxCell id="hEfQuzmt5uYXeB6LslyW-28" value="Bayou City Clinic&lt;div&gt;Employees&lt;/div&gt;" style="verticalLabelPosition=bottom;html=1;fillColor=#282828;strokeColor=none;verticalAlign=top;pointerEvents=1;align=center;shape=mxgraph.cisco_safe.people_places_things_icons.icon6;" vertex="1" parent="1">
           <mxGeometry x="960" y="-650" width="40" height="41" as="geometry" />
         </mxCell>
         <mxCell id="hEfQuzmt5uYXeB6LslyW-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="hEfQuzmt5uYXeB6LslyW-31" target="hEfQuzmt5uYXeB6LslyW-21">
@@ -138,7 +138,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="hEfQuzmt5uYXeB6LslyW-35" value="Patients" style="verticalLabelPosition=bottom;sketch=0;html=1;fillColor=#282828;strokeColor=none;verticalAlign=top;pointerEvents=1;align=center;shape=mxgraph.cisco_safe.people_places_things_icons.icon9;" vertex="1" parent="1">
+        <mxCell id="hEfQuzmt5uYXeB6LslyW-35" value="Patients" style="verticalLabelPosition=bottom;html=1;fillColor=#282828;strokeColor=none;verticalAlign=top;pointerEvents=1;align=center;shape=mxgraph.cisco_safe.people_places_things_icons.icon9;" vertex="1" parent="1">
           <mxGeometry x="800" y="-649.5" width="40" height="40" as="geometry" />
         </mxCell>
         <mxCell id="hEfQuzmt5uYXeB6LslyW-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="hEfQuzmt5uYXeB6LslyW-4" target="hEfQuzmt5uYXeB6LslyW-32">
